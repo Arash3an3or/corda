@@ -376,7 +376,10 @@ class DriverDSLImpl(
                         NodeRegistrationConfiguration(config.corda),
                         HTTPNetworkRegistrationService(networkServicesConfig, versionInfo),
                         NodeRegistrationOption(rootTruststorePath, rootTruststorePassword)
-                ).generateKeysAndRegister()
+                ).apply {
+                    generateKeysAndRegister()
+                    generateNodeIdentity()
+                }
                 config
             }
         } else {
